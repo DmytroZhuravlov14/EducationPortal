@@ -1,0 +1,63 @@
+﻿@using EducationPortal.Data
+@using EducationPortal.UI.Models
+@model EducationPortal.UI.Models.CourseViewModel
+
+@{
+    ViewBag.Title = "AddCourse";
+}
+
+<h2>Add Course</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="uk-card uk-card-secondary">
+        @if ((ViewBag.Materials as IEnumerable<Material>).Any())
+        {
+            foreach (var material in ViewBag.Materials as List<Material>)
+            {
+                @Html.Label("Name:", htmlAttributes: new { @class = "control-label col-md-1", @style = "margin-top:-7px" })
+                <p>@material.Name</p>
+                @Html.Label("Link:", htmlAttributes: new { @class = "control-label col-md-1", @style = "margin-top:-7px" })
+                <p>@material.Link</p>
+                foreach (var skill in material.Skills)
+                {
+                    @Html.Partial("ShowSkill", AutoMapper.Mapper.Map<SkillViewModel>(skill))
+                }
+                @Html.CheckBox("names", false, new { id = material.Name, value = material.Name, @style = "margin-left:50px" })
+                <hr>
+            }
+
+        }
+        else
+        {
+            <p>No materials found</p>
+        }
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create Course" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}

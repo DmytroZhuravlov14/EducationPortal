@@ -1,0 +1,49 @@
+﻿@using EducationPortal.UI.Models
+@using EducationPortal.Data
+@using AutoMapper
+@using EducationPortal.UI.Helpers
+@model IEnumerable<EducationPortal.UI.Models.CourseViewModel>
+
+@{
+    ViewBag.Title = "Courses";
+}
+
+<h2>@ViewBag.PageName</h2>
+
+<table class="table">
+    @if (Model.Any())
+    {
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Materials)
+            </th>
+        </tr>
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                @if (item.Materials.Any())
+                {
+                    <td>
+                        @Html.Partial("ShowMaterials", MaterialMapper.Map(item.Materials.ToList()).OrderBy(m => m.Name))
+                    </td>
+                }
+            </tr>
+        }
+    }
+    else
+    {
+        <p>No suitable courses found</p>
+    }
+</table>

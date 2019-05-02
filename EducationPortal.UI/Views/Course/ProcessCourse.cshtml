@@ -1,0 +1,45 @@
+﻿@using EducationPortal.Data
+@using EducationPortal.UI.Helpers
+@model EducationPortal.UI.Models.CourseViewModel
+
+<h2>Process Course</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>CourseViewModel</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    
+
+    <div class="form-group">
+        @Html.Label("Materials", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.Editor("Materials", new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    @Html.Partial("ShowMaterials", MaterialMapper.Map(ViewBag.CourseMaterials as List<Material>).OrderBy(m => m.Name))
+
+    @foreach (var material in ViewBag.CourseMaterials as IEnumerable<Material>)
+    {
+        if ((ViewBag.User as User).CompletedMaterials.Contains(material))
+        {
+            @Html.CheckBox("names", true, new { id = material.Name, value = material.Name, @disabled = "disabled" })
+            <p>@material.Name</p>
+        }
+        else
+        {
+            @Html.CheckBox("names", false, new { id = material.Name, value = material.Name })
+            <p>@material.Name</p>
+        }
+    }
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}

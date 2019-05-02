@@ -1,0 +1,40 @@
+﻿@using EducationPortal.UI.Helpers
+@model IEnumerable<EducationPortal.UI.Models.CourseViewModel>
+
+@{
+    ViewBag.Title = "ShowStartedCourses";
+}
+
+<h2>ShowStartedCourses</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Materials)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        @if (item.Materials.Any())
+        {
+            <td>
+                @Html.Partial("ShowMaterials", MaterialMapper.Map(item.Materials.ToList()).OrderBy(m => m.Name))
+            </td>
+        }
+    </tr>
+}
+
+</table>

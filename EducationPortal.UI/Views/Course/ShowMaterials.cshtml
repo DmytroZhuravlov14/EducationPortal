@@ -1,0 +1,26 @@
+﻿@using EducationPortal.UI.Models
+@model IEnumerable<EducationPortal.UI.Models.MaterialViewModel>
+
+<div>
+    <table class="table">
+        @foreach (var item in Model)
+        {
+            <tr>
+                @if (item is ArticleViewModel)
+                {
+                    @Html.Partial("ShowArticle", item as ArticleViewModel)
+                }
+                @if (item is VideoViewModel)
+                {
+                    @Html.Partial("ShowVideo", item as VideoViewModel)
+                }
+                @if (item is BookViewModel)
+                {
+                    @Html.Partial("ShowBook", item as BookViewModel)
+                }
+
+                @Html.Partial("ShowSkills", AutoMapper.Mapper.Map<IEnumerable<SkillViewModel>>(item.Skills.OrderBy(s => s.Name)))
+            </tr>
+        }
+    </table>
+</div>

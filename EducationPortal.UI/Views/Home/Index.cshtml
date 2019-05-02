@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<div class="row">
+    <div class="col-md-4 uk-card uk-card-header">
+        <div class="uk-card uk-card-default" style="height:380px">
+            <h3 class="uk-card-title uk-align-center" style="text-align:center;">Add Some</h3>
+            <div style="text-align:center;">
+                <p>@Html.ActionLink("Add course", "AddCourse", "Course", null, new { @class = "uk-button uk-button-secondary" })</p>
+            </div>
+            <div style="text-align:center;">
+                <p>@Html.ActionLink("Add video", "AddVideo", "Material", null, new { @class = "uk-button uk-button-secondary" })</p>
+            </div>
+            <div style="text-align:center;">
+                <p>@Html.ActionLink("Add article", "AddArticle", "Material", null, new { @class = "uk-button uk-button-secondary" })</p>
+            </div>
+            <div style="text-align:center;">
+                <p>@Html.ActionLink("Add book", "AddBook", "Material", null, new { @class = "uk-button uk-button-secondary" })</p>
+            </div>
+            <div style="text-align:center;">
+                <p>@Html.ActionLink("Add skill", "AddSkill", "Skill", null, new { @class = "uk-button uk-button-secondary" })</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 uk-card uk-card-header">
+        <div class="uk-card uk-card-default" style="height:380px">
+            <h3 class="uk-card-title uk-align-center" style="text-align:center;">Course Manipulation</h3>
+            <div style="text-align:center;">
+                <p>@Html.ActionLink("Start course", "StartCourse", "Course", null, new { @class = "uk-button uk-button-primary" })</p>
+            </div>
+            <div style="text-align:center;">
+                <p>@Html.ActionLink("Update course", "GetCourseToUpdate", "Course", null, new { @class = "uk-button uk-button-primary" })</p>
+            </div>
+            <div style="text-align:center;">
+                <p>@Html.ActionLink("Process course", "GetCourseToProcess", "Course", null, new { @class = "uk-button uk-button-primary" })</p>
+            </div>
+            <div style="text-align:center;">
+                <p>@Html.ActionLink("Complete course", "CompleteCourse", "Course", null, new { @class = "uk-button uk-button-primary" })</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 uk-card uk-card-header">
+        <div class="uk-card uk-card-default" style="height:380px">
+            <h3 class="uk-card-title uk-align-center" style="text-align:center;">Show some</h3>
+            <div style="text-align:center;">
+                <p>@Html.ActionLink("Show courses", "ShowCourses", "Course", null, new { @class = "uk-button uk-button-secondary" })</p>
+            </div>
+            <div style="text-align:center;">
+                <p>@Html.ActionLink("Show started courses", "ShowStartedCourses", "Course", null, new { @class = "uk-button uk-button-secondary" })</p>
+            </div>
+            <div style="text-align:center;">
+                <p>@Html.ActionLink("Show completed courses", "ShowCompletedCourses", "Course", null, new { @class = "uk-button uk-button-secondary" })</p>
+            </div>
+        </div>    
+    </div>
+</div>

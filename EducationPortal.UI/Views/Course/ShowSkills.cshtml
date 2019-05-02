@@ -1,0 +1,5 @@
+﻿@model IEnumerable<EducationPortal.UI.Models.SkillViewModel>
+
+@foreach (var item in Model) {
+    @Html.Partial("~/Views/Course/ShowSkill.cshtml", item)
+}
